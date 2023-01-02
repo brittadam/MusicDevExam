@@ -12,9 +12,11 @@ const info = ({navigation, route}) =>{
     return (
         <View>
           <Details songTitle={route.params.itemTitle} 
-          singer={route.params.itemDescription}/>
+          singer={route.params.itemDescription}
+          photo={route.params.itemImage}/>
         </View>
     )
 }
+
 
 export default info;
