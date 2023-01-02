@@ -27,9 +27,19 @@ const music = ({navigation}) =>{
         getMusic();
     }, []);
 
+    const [counter, setCounter] = useState(0);
+
+    const increase = () => {
+        setCounter((currentCounter) => currentCounter + 1);
+    };
 
     return (
+       
         <View style={Styles.algemeen}>
+            <View style={Styles.addCounter}>
+                <Image source={require("../assets/picwish.png")} style={{margin: 10,width:50, height:50}}></Image>
+                <Text style={Styles.counter}>{counter}</Text>
+            </View>
             <FlatList data={music} renderItem={({item}) => (
                 
                 <View style={Styles.achtergrond}>
@@ -48,6 +58,9 @@ const music = ({navigation}) =>{
                     <Pressable style={Styles.b} onPress ={()=> navigation.navigate ("info", {itemTitle: item.title.rendered, itemDescription: item.rttpg_excerpt, itemImage: item.yoast_head_json.og_image[0].url })}>
                         <Text style={Styles.btn}>View song</Text>
                     </Pressable>
+                    <Pressable style={Styles.AddSong} onPress={increase}>
+                    <Text style={Styles.add}> Add song</Text>
+                    </Pressable>
 
                 </View>
             )}/>
@@ -64,6 +77,16 @@ const Styles = StyleSheet.create({
         margin: 10, 
         borderWidth: 5,
         borderColor: "#90EE90",
+    },
+    addCounter:{
+        flexDirection:'row',
+        position: 'relative',
+        left:280   
+
+    },
+    counter:{
+        fontSize: 40,
+        marginTop:12
     },
     container:{
         justifyContent: 'center',
@@ -85,6 +108,18 @@ const Styles = StyleSheet.create({
     b:{
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    add:{
+        backgroundColor:"#90EE90",
+        width: 100, 
+        padding: 5,
+        margin: 10,
+        textAlign: 'center',
+    },
+    AddSong:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 20
     }
 })
     
