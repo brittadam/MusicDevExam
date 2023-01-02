@@ -29,7 +29,7 @@ const music = ({navigation}) =>{
 
 
     return (
-        <View>
+        <View style={Styles.algemeen}>
             <FlatList data={music} renderItem={({item}) => (
                 
                 <View style={Styles.achtergrond}>
@@ -45,7 +45,7 @@ const music = ({navigation}) =>{
                         <Text style={Styles.song}>{item.title.rendered}</Text>
                     
                     </View>
-                    <Pressable onPress ={()=> navigation.navigate ("info", {itemTitle: item.title.rendered, itemDescription: item.rttpg_excerpt})}>
+                    <Pressable style={Styles.b} onPress ={()=> navigation.navigate ("info", {itemTitle: item.title.rendered, itemDescription: item.rttpg_excerpt, itemImage: item.yoast_head_json.og_image[0].url })}>
                         <Text style={Styles.btn}>View song</Text>
                     </Pressable>
 
@@ -56,21 +56,35 @@ const music = ({navigation}) =>{
 }
 
 const Styles = StyleSheet.create({
+    algemeen:{
+        backgroundColor:"#565656"
+    },
     achtergrond:{
-        backgroundColor:"#000"
+        backgroundColor:"#000",
+        margin: 10, 
+        borderWidth: 5,
+        borderColor: "#90EE90",
     },
     container:{
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: 30, 
+        
     },
     song:{
-        color:"#fff"
+        color:"#fff",
+        paddingTop: 20
     },
     btn:{
         backgroundColor:"#90EE90",
-        flex:1,
-        flexDirection:"columns",
-        
+        width: 100, 
+        padding: 5,
+        margin: 10,
+        textAlign: 'center'
+    },
+    b:{
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })
     
