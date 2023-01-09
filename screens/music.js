@@ -33,6 +33,21 @@ const music = ({navigation}) =>{
         setCounter((currentCounter) => currentCounter + 1);
     };
 
+    const getMusicByTitleSearch = async (enteredText) => {//argument meegegeven door onChangeText
+        try {
+          if (enteredText.length > 0) {
+            const search = encodeURI("https://brittadam.be/wp-json/wp/v2/posts?categories=6&search=" + enteredText);
+            console.log(search);
+            const response = await fetch(search);
+            const json = await response.json();
+            console.log(json);
+            setMusic(json);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
     return (
        
         <View style={Styles.algemeen}>
@@ -40,8 +55,13 @@ const music = ({navigation}) =>{
                 <Image source={require("../assets/picwish.png")} style={{margin: 10,width:50, height:50}}></Image>
                 <Text style={Styles.counter}>{counter}</Text>
             </View>
-            <FlatList data={music} renderItem={({item}) => (
-                
+            <TextInput
+                placeholder="Search movie"
+                style={Styles.input}
+                onChangeText={getMusicByTitleSearch}//geeft argument enteredText mee, denk aan de taskInputHandler uit de todo app.
+            />
+            
+            <FlatList style={{height:610}} data={music} renderItem={({item}) => (
                 <View style={Styles.achtergrond}>
                     <View style={Styles.container}>
                         <View>
@@ -65,8 +85,10 @@ const music = ({navigation}) =>{
                 </View>
             )}/>
         </View>
+        
     )
 }
+
 
 const Styles = StyleSheet.create({
     algemeen:{
@@ -77,11 +99,12 @@ const Styles = StyleSheet.create({
         margin: 10, 
         borderWidth: 5,
         borderColor: "#90EE90",
+        borderRadius: 20,
     },
     addCounter:{
         flexDirection:'row',
         position: 'relative',
-        left:280   
+        left:270   
 
     },
     counter:{
@@ -103,7 +126,8 @@ const Styles = StyleSheet.create({
         width: 100, 
         padding: 5,
         margin: 10,
-        textAlign: 'center'
+        textAlign: 'center',
+        
     },
     b:{
         justifyContent: 'center',
@@ -120,6 +144,18 @@ const Styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 20
+    },
+    input:{
+        backgroundColor: "white",
+        marginTop: 10, 
+        marginBottom: 10,
+        marginLeft: 45,
+        marginRight: 45,
+        padding: 15, 
+        color: "#90EE90", 
+        borderWidth: 5,
+        borderColor: "#90EE90",
+        borderRadius: 20,
     }
 })
     
