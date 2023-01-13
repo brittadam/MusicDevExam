@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, Image, TextInput, Pressable, FlatList} from 'react-native';
+import {StyleSheet, Text, View, Image, TextInput, Pressable, FlatList, Button} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -60,7 +60,9 @@ const music = ({navigation}) =>{
                 style={Styles.input}
                 onChangeText={getMusicByTitleSearch}//geeft argument enteredText mee, denk aan de taskInputHandler uit de todo app.
             />
-            
+
+           <Button title="Follow artists" onPress={() => navigation.navigate("Follow")} />
+
             <FlatList style={{height:610}} data={music} renderItem={({item}) => (
                 <View style={Styles.achtergrond}>
                     <View style={Styles.container}>
