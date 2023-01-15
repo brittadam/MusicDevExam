@@ -1,11 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-import music from './screens/music.js';
-import info from './screens/info.js';
+import Music from './screens/music.js';
+import Info from './screens/info.js';
+import Follow from './screens/follow.js';
+import FadeInView from './screens/start.js';
 
 
 const Stack = createNativeStackNavigator();
@@ -14,19 +13,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Playlist" component={(music)} />
-        <Stack.Screen name="info" component={(info)} />
+        <Stack.Screen name="start" component={(FadeInView)} />
+        <Stack.Screen name="Playlist" component={(Music)} />
+        <Stack.Screen name="info" component={(Info)} />
+        <Stack.Screen name="Follow" component={(Follow)} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: '#fff',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
-});
