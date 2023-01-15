@@ -25,14 +25,16 @@ const Follow = () => {
                 <Text style={Styles.btn}> Follow </Text>
             </Pressable>
 
-            <FlatList style={{ height: 620 }} data={artists} renderItem={(itemData) => (
-                <View style={Styles.bgfollow} >
-                    <Image source={require("../assets/picwish.png")} style={{ margin: 10, width: 20, height: 20 }}></Image>
-                    <Text style={Styles.artistfollow}>
-                        {itemData.item}
-                    </Text>
-                </View>
-            )} />
+            <FlatList
+                ListFooterComponent={<View style={{ height: 540 }}></View>}
+                data={artists} renderItem={(itemData) => (
+                    <View style={Styles.bgfollow} >
+                        <Image source={require("../assets/picwish.png")} style={{ margin: 10, width: 20, height: 20 }}></Image>
+                        <Text style={Styles.artistfollow}>
+                            {itemData.item}
+                        </Text>
+                    </View>
+                )} />
         </View>
 
     )
